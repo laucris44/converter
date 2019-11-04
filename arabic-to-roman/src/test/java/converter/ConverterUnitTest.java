@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import converter.domain.*;
 
-public class ConverterTest {
+public class ConverterUnitTest {
 
 	@Test 
 	public  void converterToRomanUnitTest() {
