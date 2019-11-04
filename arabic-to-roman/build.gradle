@@ -67,10 +67,10 @@ dependencies {
 
 sonarqube{
 	properties{
-		property "sonar.projectName", "arabigos-romanos"
-		property "sonar.projectKey", ""
+		property "sonar.projectName", "arabicToRoman"
+		property "sonar.projectKey", "arabicToRoman.key"
 		property "sonar.jacoco.reportPaths", "${project.buildDir}/jacoco/test.exec"
-		property 'sonar.coverage.exclusions', "src/main/java/io/quind/data/**"
+		property 'sonar.coverage.exclusions', "src/main/java/converter/controller"
 	}
 }
 
