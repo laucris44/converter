@@ -46,7 +46,7 @@ pipeline {
 			
 			stage ('Create Docker Images') {
 		  		steps {
-					sh 'docker build -f Dockerfile -t converterToRoman.jar .'
+					sh 'docker build -f Dockerfile -t arabicToRoman.jar .'
 				}
 		 	}
 		}
