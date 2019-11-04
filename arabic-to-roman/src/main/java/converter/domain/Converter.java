@@ -9,12 +9,13 @@ public class Converter {
 	    String Dec[]={"", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"};
 	    String Cen[]={"", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM"}; 
 	    
-	    String roman = "null";
 	    
 	    int u=(int) (Num%10);
 	    int d=(int) ((Num/10)%10);
 	    int c=(int) (Num/100);
 
+		String roman;
+		
 		if(Num>=100){
 			roman = (new StringBuilder()).append(Cen[c]).append(Dec[d]).append(Uni[u]).toString();	
 		}else {
