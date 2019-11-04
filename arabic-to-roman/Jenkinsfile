@@ -18,7 +18,9 @@ pipeline {
 			stage('Static Code Analysis') {
 				steps {
 					withSonarQubeEnv('sonarqube'){						
-						sh 'gradle --info sonarqube -x test'
+						dir('arabic-to-roman'){
+							sh 'gradle --info sonarqube -x test'
+						} 	
 					}
 				}
 			}
