@@ -41,15 +41,17 @@ pipeline {
         	
 			stage ('Build code') {
 				steps {
-					
-					sh 'gradle build -x test'
-					 
+					dir('arabic-to-roman'){
+						sh 'gradle build -x test'
+					} 
 				}
 			}
 			
 			stage ('Create Docker Images') {
 		  		steps {
+		  		dir('arabic-to-roman'){
 					sh 'docker build -f Dockerfile -t arabicToRoman.jar .'
+				}
 				}
 		 	}
 		}
