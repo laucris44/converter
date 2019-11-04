@@ -9,8 +9,9 @@ pipeline {
 		stages {
 			stage ('Unit Tests') {
 				steps {
-					sh 'gradle clean test --tests *UnitTest*'
-					
+					dir('arabic-to-roman'){
+						sh 'gradle test --tests *UnitTest*'
+					}
 				}
 			}
 		
