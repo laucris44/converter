@@ -1,0 +1,11 @@
+/.gradle/
+/build/
+/bin/
+/gradle/
+/gradlew
+/gradlew.bat
+Jenkinsfile.save
+.classpath
+/.settings
+/.project
+.attach_pid8876
