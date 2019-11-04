@@ -3,7 +3,7 @@ package converter.domain;
 
 public class Converter {
 	
-	public static String converterToRoman(double Num) {
+	public static  String converterToRoman(double Num) {
 		
 		String Uni[]={"", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"};
 	    String Dec[]={"", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"};
