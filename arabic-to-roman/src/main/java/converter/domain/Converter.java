@@ -8,7 +8,9 @@ public class Converter {
 		String Uni[]={"", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"};
 	    String Dec[]={"", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"};
 	    String Cen[]={"", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM"}; 
-	    String roman = "0";
+	    
+	    String roman = "null";
+	    
 	    int u=(int) (Num%10);
 	    int d=(int) ((Num/10)%10);
 	    int c=(int) (Num/100);
