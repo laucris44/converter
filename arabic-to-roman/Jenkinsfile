@@ -1,0 +1,52 @@
+Pipeline { 
+	  agent any
+	  
+    	tools {
+			 gradle "Gradle 5.0" 
+		 }
+		 
+		stages {
+			stage ('Unit Tests') {
+				steps {
+					sh 'gradle clean test --tests *UnitTest*'
+					
+				}
+			}
+		
+			stage('Static Code Analysis') {
+				steps {
+					withSonarQubeEnv('sonarqube'){						
+						sh 'gradle --info sonarqube -x test'
+					}
+				}
+			}
+			
+			stage('Quality Gate') {
+            	steps {
+                    script {
+                        timeout(time: 10, unit: 'MINUTES') {
+                            def qg = waitForQualityGate()
+                            if (qg.status != 'OK') {
+                                error "Pipeline aborted due to quality gate failure: ${qg.status}"
+                            }
+                        }
+                    	
+                	}
+            	}
+        	}
+        	
+			stage ('Build code') {
+				steps {
+					
+					sh 'gradle build -x test'
+					 
+				}
+			}
+			
+			stage ('Create Docker Images') {
+		  		steps {
+					sh 'docker build -f Dockerfile -t converterToRoman.jar .'
+				}
+		 	}
+		}
+	}
