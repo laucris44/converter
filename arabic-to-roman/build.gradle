@@ -38,7 +38,7 @@ repositories {
 
 bootJar {
 	baseName = 'arabicToRoman'
-	version =  '0.1.0'
+	version =  ''
 }
 
 sourceCompatibility = 1.8
