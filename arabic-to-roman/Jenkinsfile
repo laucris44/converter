@@ -1,12 +1,12 @@
 
 pipeline { 
-	  agent any
-	  
-    	tools {
-			 gradle "GRADLE" 
-		 }
+	agent any
+	
+	tools {
+		gradle "GRADLE" 
+	}
 		 
-		stages {
+	stages {
 			stage ('Unit Tests') {
 				steps {
 					dir('arabic-to-roman'){
@@ -29,12 +29,11 @@ pipeline {
             	steps {
                     script {
                         timeout(time: 10, unit: 'MINUTES') {
-                            def qg = waitForQualityGate()
+                        	def qg = waitForQualityGate()
                             if (qg.status != 'OK') {
-                                error "Pipeline aborted due to quality gate failure: ${qg.status}"
+                            	error "Pipeline aborted due to quality gate failure: ${qg.status}"
                             }
-                        }
-                    	
+                        }	
                 	}
             	}
         	}
@@ -49,10 +48,10 @@ pipeline {
 			
 			stage ('Create Docker Images') {
 		  		steps {
-		  		dir('arabic-to-roman'){
-					sh 'docker build -f Dockerfile -t arabicToRoman.jar .'
-				}
+		  			dir('arabic-to-roman'){
+						sh 'docker build -f Dockerfile -t arabicToRoman.jar .'
+					}
 				}
 		 	}
-		}
 	}
+}
