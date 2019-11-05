@@ -8,14 +8,12 @@ buildscript {
 	}
 	dependencies {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:2.1.6.RELEASE")
-		classpath 'mysql:mysql-connector-java:8.0.12'
 	}
 }
 
 plugins {
 	id 'java-library'
 	id "org.sonarqube" version "2.7"
-	id 'jacoco'	
 }
 
 apply plugin: 'java'
@@ -41,17 +39,12 @@ bootJar {
 	version =  ''
 }
 
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
-
-repositories { mavenCentral() }
 
 dependencies {
 	implementation('org.springframework.boot:spring-boot-starter-jersey')
 	implementation('org.springframework.boot:spring-boot-starter-web')
 	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
 	
-	runtimeOnly('mysql:mysql-connector-java')
 	testImplementation('org.springframework.boot:spring-boot-starter-test')
 	compile("org.springframework.boot:spring-boot-starter-web")
 	
@@ -74,54 +67,6 @@ sonarqube{
 	}
 }
 
-tasks.withType(Test) {
-	scanForTestClasses = false
-	include "**/*Test.class" // whatever Ant pattern matches your test class files
-}
-
-jacoco {
-	toolVersion = "0.8.1"
-	reportsDir = file("$buildDir/customJacocoReportDir")
-}
-
-jacocoTestReport {
-	reports {
-		xml.enabled false
-		csv.enabled false
-		html.destination file("${buildDir}/jacocoHtml")
-	}
-}
-
-test {
-	systemProperty "ip", System.getProperty("ip")
-	jacoco {
-		destinationFile = file("$buildDir/jacoco/jacocoTest.exec")
-		classDumpDir = file("$buildDir/jacoco/classpathdumps")
-	}
-
-}
-
-jacocoTestCoverageVerification {
-	violationRules {
-		rule {
-			limit {
-				minimum = 0.5
-			}
-		}
-
-		rule {
-			enabled = false
-			element = 'CLASS'
-			includes = ['org.gradle.*']
-
-			limit {
-				counter = 'LINE'
-				value = 'TOTALCOUNT'
-				maximum = 0.3
-			}
-		}
-	}
-}
 
 dependencyManagement {
 	imports {
